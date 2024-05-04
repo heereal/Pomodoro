@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,6 +9,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int totalSeconds = 1600;
+  late Timer timer;
+
+  void onTick(Timer timer) {
+    setState(() {
+      totalSeconds -= 1;
+    });
+  }
+
+  void onStartPressed() {
+    timer = Timer.periodic(
+      const Duration(seconds: 1), // 1초마다 onTick 함수 실행
+      onTick,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                '25:00',
+                '$totalSeconds',
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
-                  fontSize: 89,
+                  fontSize: 80,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -34,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 3,
             child: Center(
               child: IconButton(
-                onPressed: () {},
+                onPressed: onStartPressed,
                 icon: const Icon(Icons.play_circle_outline),
                 iconSize: 120,
                 color: Theme.of(context).cardColor,
@@ -50,6 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40),
+                      ),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
