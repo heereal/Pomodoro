@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int totalPomodoros = 0;
   late Timer timer;
 
+  // 타이머 작동 중 1초마다 실행됨
   void onTick(Timer timer) {
     // 0초가 되면 시간 초기화
     if (totalSeconds == 0) {
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  // 시작 버튼 클릭 시 작동
   void onStartPressed() {
     timer = Timer.periodic(
       const Duration(seconds: 1), // 1초마다 onTick 함수 실행
@@ -41,9 +43,19 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // 일시정지 버튼 클릭 시 작동
   void onPausePressed() {
     timer.cancel();
     setState(() {
+      isRunning = false;
+    });
+  }
+
+  // 리셋 버튼 클릭 시 작동
+  void onResetPressed() {
+    timer.cancel();
+    setState(() {
+      totalSeconds = twentyFiveMinutes;
       isRunning = false;
     });
   }
@@ -77,13 +89,28 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 3,
             child: Center(
-              child: IconButton(
-                onPressed: isRunning ? onPausePressed : onStartPressed,
-                icon: Icon(isRunning
-                    ? Icons.pause_circle_outline
-                    : Icons.play_circle_outline),
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
+                    icon: Icon(isRunning
+                        ? Icons.pause_circle_outline
+                        : Icons.play_circle_outline),
+                    iconSize: 120,
+                    color: Theme.of(context).cardColor,
+                  ),
+                  TextButton(
+                    onPressed: onResetPressed,
+                    child: Text(
+                      totalSeconds == twentyFiveMinutes ? '' : 'reset',
+                      style: TextStyle(
+                        color: Theme.of(context).cardColor,
+                        fontSize: 22,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
