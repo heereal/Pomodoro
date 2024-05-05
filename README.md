@@ -1,16 +1,10 @@
-# pomodoro
+# Pomodoro
 
-A new Flutter project.
+- [Flutter 로 웹툰 앱 만들기](https://nomadcoders.co/flutter-for-beginners) 강의 수강하면서 만든 뽀모도로 타이머 앱
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<table>
+  <tr>
+    <td><img src="https://github.com/heereal/Pomodoro/assets/117061017/0887f5f8-0865-4f75-8b27-f56806744f41" width="300px"></td>
+    <td><img src="https://github.com/heereal/Pomodoro/assets/117061017/37dbea32-bbe7-47d9-9d4d-9165e28a0fcb" width="300px"></td>
+  </tr>
+</table>
